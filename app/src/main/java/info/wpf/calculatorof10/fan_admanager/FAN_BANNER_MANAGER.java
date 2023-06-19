@@ -24,9 +24,9 @@ public class FAN_BANNER_MANAGER {
     public FAN_BANNER_MANAGER(Activity activity, AdListener adListener) {
         FAN_BANNER_MANAGER.activity = activity;
 
-        FAN_BANNER_MANAGER.initFacebookBannerAdListener(activity);
+
         FAN_BANNER_MANAGER.activityBannerAdsManager(activity);
-        FAN_BANNER_MANAGER.ShowFacebookBanner(activity, adListener);
+        FAN_BANNER_MANAGER.ShowFacebookBanner(activity, FAN_BANNER_MANAGER.initFacebookBannerAdListener(activity));
     }
 
     public static void activityBannerAdsManager(Activity activity){
@@ -74,12 +74,12 @@ public class FAN_BANNER_MANAGER {
         // AdManager__Banner.adShown = true;
     }
 
-    public static void initFacebookBannerAdListener(Activity activity){
-
+    public static AdListener initFacebookBannerAdListener(Activity activity){
+        CONSTANTS.LogString("ACTIVITY: "+activity.getLocalClassName());
         switch (activity.getLocalClassName()){
-            case "activities.MainActivity" : /* MainActivity */ MainActivity.facebookBannerAdListener = FAN_BANNER_MANAGER.getBannerAdListner(activity);break;
+            case "activities.MainActivity" : /* MainActivity */ return FAN_BANNER_MANAGER.getBannerAdListner(activity);
         }
-
+        return null;
     }
 
     public static AdListener getBannerAdListner(Activity activity){

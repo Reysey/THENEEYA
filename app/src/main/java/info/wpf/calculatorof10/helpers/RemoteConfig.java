@@ -24,10 +24,15 @@ import info.wpf.calculatorof10.models.AdResourceManager;
 
 public class RemoteConfig {
 
+    /*
+    * RETRIEVE DATA FROM ONEDRIVE OR FIREBASE
+    * */
+
     public static AdResourceManager adResourceManager;
     public static DatabaseReference databaseRef;
     public static RemoteConfigLoadedEvent remoteConfigLoadedEvent;
 
+    public RemoteConfig() { }
 
     public void InitRemoteConfig(RemoteConfigLoadedEvent remoteConfigLoadedEvent){
         new FetchJsonTask(remoteConfigLoadedEvent).execute();
@@ -106,7 +111,9 @@ public class RemoteConfig {
                 CONSTANTS.showADs = Boolean.parseBoolean(RemoteConfig.adResourceManager.getJSON_SHOW_ADS().toString());
                 CONSTANTS.DEV_MONITORING = Boolean.parseBoolean(RemoteConfig.adResourceManager.getDEV_MONITOR().toString());
 
+
                 if(CONSTANTS.showADs){
+                    CONSTANTS.JSON_ACTIVE_AD_NETWORK = RemoteConfig.adResourceManager.getJSON_ACTIVE_AD_NETWORK();
                     FAN_CONSTANTS.FACEBOOK_BANNER_UNIT_ID = RemoteConfig.adResourceManager.getJSON_AD_UNIT_FB_BANNER();
                 }
                 
@@ -115,7 +122,7 @@ public class RemoteConfig {
             } else {
 
                 // Failed to fetch JSON data
-                CONSTANTS.LogString("RemoteConfig","onPostExecute", "Failed to fetch JSON data from OneDrive, Try Firebase.");
+                CONSTANTS.LogString("RemoteConfig","onPostExecute", "Failed to fetch JSON data from OneDrive, Try From Firebase.");
 
                 // LOAD DATA FROM JSON
                 // Get a reference to the Firebase Realtime Database
@@ -135,6 +142,7 @@ public class RemoteConfig {
                                     case AdResourceManager.AD_NETWORK_FB:
                                         /* DO SOMETHING */
                                         RemoteConfig.adResourceManager.setJSON_AD_UNIT_FB_BANNER(dataSnapshot.child("AdResourceManager").child("JSON_AD_UNIT_FB_BANNER").getValue(String.class));
+                                        CONSTANTS.JSON_ACTIVE_AD_NETWORK = dataSnapshot.child("AdResourceManager").child("JSON_ACTIVE_AD_NETWORK").getValue(String.class);
                                         FAN_CONSTANTS.FACEBOOK_BANNER_UNIT_ID = dataSnapshot.child("AdResourceManager").child("JSON_AD_UNIT_FB_BANNER").getValue(String.class);
                                         CONSTANTS.LogString("RemoteConfig","onDataChange", "AD UNIT  FROM JSON: "+FAN_CONSTANTS.FACEBOOK_BANNER_UNIT_ID);
                                         /* LOAD FACEBOOK ADS */
