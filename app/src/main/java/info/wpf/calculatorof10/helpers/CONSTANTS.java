@@ -18,12 +18,9 @@ public class CONSTANTS {
     public static String JSON_ACTIVE_AD_NETWORK = "";
 
     public static final long SPLASH_ANIMATION_DURATION = 2500;
-    public static final long SPLASH_DELAY_DURATION = 3000;
+    public static final long SPLASH_DELAY_DURATION = 2500;
 
     public static String jsonFileUrl = "https://hkfgig.am.files.1drv.com/y4mW8kV8yJJGR9m20D6B37zmdQ_gMXKWJj6v2kT7GHBl4NhiAQZ8rBAiwwUevcbkJj-RK0bPymBA2SQfWvuS8KQImcrE8RA5E212VHCF4cOZ1ItuEjXFyxZG8XPTk8rLyvokz38sG04_MysTDeYR-ZMVCR5L85px9LBF2nR170vwZ7XtbP95fB4zfDGRi4BqV9iUsK3ga624SokgzqiJT5mBQ";
-
-
-
 
     public static void LogString(String ClassName, String Methode, String Message){
         if(DEBUG){
