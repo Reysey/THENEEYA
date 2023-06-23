@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
-        android:text="Welcome to My App"
+        android:text="@string/app_name"
         android:gravity="center | top"
         android:textColor="#989898"
         android:textSize="25sp"

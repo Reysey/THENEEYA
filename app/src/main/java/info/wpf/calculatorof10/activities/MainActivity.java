@@ -103,18 +103,28 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+
         switch (item.getItemId()) {
             case R.id.menu_about:
                 // Handle "About Us" menu option click
-                Toast.makeText(this, "About Us clicked", Toast.LENGTH_SHORT).show();
+                CONSTANTS.LogString("About Us clicked");
+                intent = new Intent(this, WebViewActivity.class);
+                intent.putExtra("url", "https://theneeyadevteam.000webhostapp.com/index.html");
+                startActivity(intent);
+
                 return true;
             case R.id.menu_privacy:
                 // Handle "Privacy Setting" menu option click
-                Toast.makeText(this, "Privacy Setting clicked", Toast.LENGTH_SHORT).show();
+                CONSTANTS.LogString( "Privacy Setting clicked");
+                intent = new Intent(this, WebViewActivity.class);
+                intent.putExtra("url", "https://theneeyadevteam.000webhostapp.com/index.html");
+                startActivity(intent);
                 return true;
             case R.id.menu_close:
                 // Handle "Close The App" menu option click
-                Toast.makeText(this, "Close The App clicked", Toast.LENGTH_SHORT).show();
+                CONSTANTS.LogString( "Close The App clicked");
                 finish(); // Close the activity
                 return true;
             default:
